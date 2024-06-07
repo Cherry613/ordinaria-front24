@@ -4,7 +4,7 @@ import { Fav } from "../islands/Fav.tsx";
 
 
 
-export const Videos: FunctionComponent<{videos: VideoType[]}> = ({videos}) => {
+export const Videos: FunctionComponent<{videos: VideoType[], userid: string}> = ({videos, userid}) => {
 
     return(
         <div class="video-list-container">
@@ -19,7 +19,7 @@ export const Videos: FunctionComponent<{videos: VideoType[]}> = ({videos}) => {
                                 <p class="video-release-date">Release date: {elem.date}</p>
                             </div>
                         </a>
-                        <Fav video={elem}/>
+                        <Fav video={elem} userid={userid}/>
                     </div>
                 )
             })}

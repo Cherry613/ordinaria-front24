@@ -58,7 +58,11 @@ export const handler: Handlers = {
                     headers
                 })
             }
-            return;
+            return new Response ("", {
+                status: 307,
+                headers : {location: "/login"}
+            })
+
         }catch(e){
             console.error(e)
         }

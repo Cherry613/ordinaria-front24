@@ -1,8 +1,16 @@
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
 import { Video } from "../../components/Video.tsx";
+import { VideoType } from "../../types.ts";
+import { State } from "../_middleware.ts";
+
+
+type Data = {
+    video: VideoType,
+    userid: string
+}
 
 export const handler: Handlers = {
-    GET: async ( req: Request, ctx: FreshContext) => {
+    GET: async ( req: Request, ctx: FreshContext<State, Data>) => {
         const {id} = ctx.params;
         const userid = ctx.state.id;
 
@@ -18,7 +26,7 @@ export const handler: Handlers = {
 
         if(response.status === 200) {
             const data = await response.json();
-            return ctx.render(data)
+            return ctx.render({video: data, userid: userid})
         }
 
         return ctx.render()
@@ -28,7 +36,7 @@ export const handler: Handlers = {
 
 const Page = (props: PageProps) => {
     return(
-        <Video video={props.data}/>
+        <Video video={props.data.video} userid={props.data.userid}/>
     )
 }
 

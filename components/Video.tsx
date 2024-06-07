@@ -2,7 +2,7 @@ import { FunctionComponent } from "preact";
 import { VideoType } from "../types.ts";
 import { Fav } from "../islands/Fav.tsx";
 
-export const Video: FunctionComponent<{ video: VideoType }> = ({ video }) => {
+export const Video: FunctionComponent<{ video: VideoType, userid: string }> = ({ video, userid }) => {
   return (
     <div class="video-detail-container">
       <a href="/videos" class="back-button">← Go Back to List</a>
@@ -19,7 +19,7 @@ export const Video: FunctionComponent<{ video: VideoType }> = ({ video }) => {
         </iframe>
         <h2 class="video-detail-title">{video.title}</h2>
         <p class="video-detail-description">{video.description}</p>
-        <Fav video={video}/>
+        <Fav video={video} userid={userid} />
       </div>
     </div>
   );
