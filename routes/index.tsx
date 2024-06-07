@@ -1,8 +1,14 @@
+import { Handlers } from "$fresh/server.ts";
 
-export default function Home() {
-  return (
-    <div>
-
-    </div>
-  );
+export const handler: Handlers = {
+  GET: () =>{
+    const headers = new Headers();
+    headers.set("location", "/login");
+    return new Response(null, {
+      status: 303,
+      headers,
+    })
+  }
 }
+
+//dice lo de incorrect credentials or user does not exist
